@@ -149,5 +149,14 @@
     "You have not enabled two factor authentication.": "二段階認証未設定",
     "You may delete any of your existing tokens if they are no longer needed.": "不要なAPIトークンを削除する。",
     "You may not delete your personal team.": "パーソナルチームを削除することはできません。",
-    "You may not leave a team that you created.": "自身が作成したチームを離れることはできません。"
+    "You may not leave a team that you created.": "自身が作成したチームを離れることはできません。",
+    "Whoops! Something went wrong.": "入力された内容に問題があります。",
+    "The :attribute must be at least :length characters.": ":attribute は :length 文字以上必要です",
+    "The :attribute must be at least :length characters and contain at least one number.": ":attributeは、:length 文字以上、かつ、数字を1文字以上含めてください。",
+    "The :attribute must be at least :length characters and contain at least one special character.": ":attributeは、:length 文字以上、かつ、記号を1文字以上含めてください。",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one number.": ":attributeは、:length 文字以上、かつ、記号と数字を1文字以上含めてください。",
+    "The :attribute must be at least :length characters and contain at least one uppercase character and one special character.": ":attributeは、:length 文字以上、かつ、記号と大文字を1文字以上含めてください。",
+    "The :attribute must be at least :length characters and contain at least one uppercase character, one number, and one special character.": ":attributeは、:length 文字以上、かつ、記号、数字、大文字をそれぞれ1文字以上含めてください。",
+    "The :attribute must be at least :length characters and contain at least one special character and one number.": ":attributeは、:length 文字以上、かつ、数字と記号を1文字以上含めてください。",
+    "The provided password does not match your current password.": "現在のパスワードが一致しません。"
 }
