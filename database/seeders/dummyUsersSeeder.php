@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Carbon\Carbon as Time;
 
-class dummyUsersSeeder extends Seeder
+class DummyUsersSeeder extends Seeder
 {
     /**
      * Run the database seeds.

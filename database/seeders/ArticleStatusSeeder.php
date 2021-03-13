@@ -14,9 +14,11 @@ class ArticleStatusSeeder extends Seeder
      */
     public function run()
     {
+        $table = DB::table('article_statuses');
+        $table->truncate();
         $article_statuses = [0 => '非公開', '公開', '有料公開', '検閲待ち', '執筆中'];
         foreach($article_statuses as $key => $status){
-            DB::table('article_statuses')->insert(['status_id' => $key ,'status_name' => $status]);
+            $table->insert(['status_id' => $key ,'status_name' => $status]);
         }
     }
 }

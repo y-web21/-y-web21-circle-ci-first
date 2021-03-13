@@ -15,14 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // call seeder
         $this->call([
-            dummyUsersSeeder::class,
-            dummyTagsSeeder::class,
+            // DummyUsersSeeder::class,
+            DummyTagsSeeder::class,
             ArticleStatusSeeder::class,
             UploadImageSeeder::class,
         ]);
 
-        // call factory
-        // \App\Models\User::factory(10)->create();
-        \App\Models\Article::factory(400)->create();
+        \App\Models\User::factory(20)->vulnerablePass()->create();
+        \App\Models\Article::factory(200)->create();
     }
 }

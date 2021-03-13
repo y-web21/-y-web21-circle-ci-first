@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class dummyTagsSeeder extends Seeder
+class DummyTagsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,9 +14,11 @@ class dummyTagsSeeder extends Seeder
      */
     public function run()
     {
+        $table = DB::table('tags');
+        $table->truncate();
         $tags = ['戯言','無価値','風説の流布'];
         foreach ($tags as $tag) {
-            DB::table('tags')->insert(['name' => $tag]);
+            $table->insert(['name' => $tag]);
         }
     }
 }
