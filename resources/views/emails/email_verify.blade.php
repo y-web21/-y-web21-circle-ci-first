@@ -4,4 +4,4 @@
 <a href="{{ $url }}">{{ $url }}</a>
 
 <p>※ このメールに見覚えのない場合はお手数ですが破棄してください。</p>
-<p>© 21xx Fictitious companany</p>
+<p>© 21xx Fictitious company</p>

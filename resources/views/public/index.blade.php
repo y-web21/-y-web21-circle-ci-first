@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Fictitious companany')
+@section('title', 'Fictitious company')
 
     @php
     $disp_header = config('const.common.BLADE.HEADER.LARGE');
