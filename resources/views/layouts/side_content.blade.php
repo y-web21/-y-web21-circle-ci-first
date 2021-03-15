@@ -1,6 +1,6 @@
 <div>
     <aside class="bg-white border-2 border-gray-300 rounded-md tracking-normal break-all shadow-md w-full h-100per">
-        <div class="border-b-2 box-border border-blue-400 my-2 p-4">
+        <div class="border-b-2 box-border border-blue-400 mt-2 p-4">
             <h2 class="font-semibold text-lg">アクセスランキング</h2>
         </div>
         <div class="p-4 w-full divide-gray-500 divide-y">

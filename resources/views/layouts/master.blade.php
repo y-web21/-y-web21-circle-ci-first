@@ -41,7 +41,7 @@ if (!isset($disp_footer)) {
             @include('layouts.gnav', [ $disp_gnav ])
         @show
 
-        <div class="md:container md:mx-auto container">
+        <div class="md:container mx-auto">
 
             <main>
                 <div class="container">

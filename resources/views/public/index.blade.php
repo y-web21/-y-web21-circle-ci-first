@@ -12,11 +12,11 @@
         <div class="col-span-12 xl:col-span-9 mt-10">
 
             <section class="lg:grid lg:grid-cols-3 gap-7 w-full">
-                <div
-                    class="lg:col-span-2 bg-white border-2 border-gray-300 rounded-md tracking-wide break-all shadow-md w-full px-4 h-100per hover:bg-gray-100 hover:shadow-lg">
+                <div class="lg:col-span-2">
+                    <div
+                    class="border-2 border-gray-300 rounded-md tracking-wide break-all shadow-md w-full px-4 hover:bg-gray-100 hover:shadow-lg">
                     @if ($top_news !== null)
-                        <a class=""
-                            href={{ route('article.show', ['article' => $top_news->id]) }}>
+                        <a class="" href={{ route('article.show', ['article' => $top_news->id]) }}>
                             <div class="flex flex-wrap md:flex-nowrap justify-center">
                                 @if ($top_news->uploadImage === null)
                                     <img alt="no_image"
@@ -27,7 +27,7 @@
                                         class="rounded-md border-2 border-gray-300 object-cover sm:w-1/2 xl:w-3/7 mh-400px my-4"
                                         src="{{ asset('storage/images/' . $top_news->uploadImage->name) }}">
                                 @endif
-                                <div class="flex flex-col my-4 ml-5 mr-2">
+                                <div class="flex flex-col my-4 ml-5 mr-2 w-full">
                                     <h3 class="text-xl font-semibold overflow-hidden">
                                         {{ Helper::strlimit($top_news->title, 50) }}</h3>
                                     <p class="text-gray-800 overflow-hidden mt-3">
@@ -37,8 +37,9 @@
                             </div>
                         </a>
                     @else
-                        <p>no posts.</p>
+                    <p>no posts.</p>
                     @endif
+                    </div>
                 </div>
                 <div
                     class="lg:col-span-1 bg-white border-2 border-gray-300 rounded-md tracking-wide shadow-md p-4 mt-10 lg:mt-0 h-100per">
