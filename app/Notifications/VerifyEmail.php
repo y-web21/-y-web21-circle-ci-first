@@ -44,7 +44,6 @@ class VerifyEmail extends Notification
      */
     public function toMail($notifiable)
     {
-        // vendor\laravel\framework\src\Illuminate\Auth\Notifications\VerifyEmail.php
         return (new MailMessage)
             ->subject(Lang::get('Verify Email Address'))
             ->markdown('emails.verify_email', ['url' => $this->verificationUrl($notifiable), 'user' => $notifiable]);

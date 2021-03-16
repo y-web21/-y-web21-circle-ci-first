@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class AccountManage extends Mailable
+class SendAppMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -31,8 +31,8 @@ class AccountManage extends Mailable
     public function build()
     {
         return $this->from(config('mail.from.address'))
-            ->subject('登録の確認をお願いします')
-            ->view('emails.email_verify')
+            ->subject('メール配信テスト')
+            ->view('emails.test')
             ->with([
                 'url' => $this->verify_url,
             ]);

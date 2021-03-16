@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\VerifyEmail;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -59,8 +60,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
+
+    /**
+     * trait MustVerifyEmail をオーバーライドし、自作の notification を呼び出します
+     *
+     * @return
+     */
     public function sendEmailVerificationNotification()
     {
-        $this->notify(new \App\Notifications\VerifyEmail);
+        $this->notify(new VerifyEmail);
     }
 }

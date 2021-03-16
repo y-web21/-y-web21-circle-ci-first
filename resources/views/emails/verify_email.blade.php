@@ -1,24 +1,24 @@
 @component('mail::message')
 
 @if (!empty($user->name))
-    {{ $user->name }} さん
+    <p style="font-weight: bold;">@lang('Hello!') {{ $user->name }} さん</p>
 @endif
 
-** 以下の認証リンクをクリックしてください。 **
+@lang('Please click the button below to verify your email address.')
 
 @component('mail::button', ['url' => $url])
-メールアドレスを認証する
+@lang('Verify Email Address.')
 @endcomponent
 
 ---
 
-※もしこのメールに覚えが無い場合は破棄してください。
+@lang('If you did not create an account, no further action is required.')
 
 ---
 
 @if (!empty($url))
-###### 「ログインして本登録を完了する」ボタンをクリックできない場合は、下記のURLをコピーしてWebブラウザに貼り付けてください。
-###### {{ $url }}
+<p style="font-weight: bold; font-size: 12px; margin-top: 10px;">
+@lang('If you’re having trouble clicking the verify email button, copy and paste the URL below')<br>
+<a href="{{ $url }}">{{ $url }}</a></p>
 @endif
-
 @endcomponent
