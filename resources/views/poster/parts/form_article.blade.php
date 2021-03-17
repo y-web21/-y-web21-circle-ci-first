@@ -44,7 +44,7 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
 
             <div class="w-full">
                 <label class="text-xl ">投稿者</label>
-                <input type="author" value="{{ 'getPosterName' }}" class="w-full form-active-blue text-opacity-10"
+                <input type="author" value="{{ Auth::user()->name }}" class="w-full form-active-blue text-opacity-10"
                     disabled>
             </div>
         </div>

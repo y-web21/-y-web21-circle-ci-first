@@ -5,6 +5,8 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
 @section('content')
 
+    @include('navigation-menu')
+
     @include('poster.parts.layouts')
 
     <div class="px-4 py-6">

@@ -164,8 +164,10 @@
     "Log Out Other Browser Sessions": "他のブラウザセッションからログアウトする",
     "Cancel": "キャンセル",
     "Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.": "すべてのデバイスで他のブラウザセッションからログアウトしてよければ、パスワードを入力してください。",
-    
+    "Log in": "ログイン",
+    "Log Out": "ログアウト",
+
     "Verify Email Address.": "メールアドレスを認証してください",
-    "If you’re having trouble clicking the verify email button, copy and paste the URL below into your web browser:": "\"メールアドレスを認証する\"ボタンが機能しない場合は, 次のURLをコピーしてWebブラウザに貼り付けてください。"
+    "If you’re having trouble clicking the verify email button, copy and paste the URL below": "\"メールアドレスを認証する\"ボタンが機能しない場合は, 次のURLをコピーしてWebブラウザに貼り付けてください。"
 
 }
