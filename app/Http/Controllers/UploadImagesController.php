@@ -25,7 +25,7 @@ class UploadImagesController extends Controller
     public function index(Request $request)
     {
         // resolveCurrentPageで現在ページは解決する
-        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
 
         $validator = RequestValidator::pagination($request, $images->lastpage());
 
@@ -142,7 +142,7 @@ class UploadImagesController extends Controller
     {
         $this->saveEditingToSession($request);
 
-        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.common.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
+        $images = UploadImage::where('delete_request', '=', '0')->orderBy('id', 'desc')->Paginate(config('const.PAGINATION.PER_PAGE.IMAGES'), ['*'], 'page');
 
         $validator = RequestValidator::pagination($request, $images->lastpage());
 

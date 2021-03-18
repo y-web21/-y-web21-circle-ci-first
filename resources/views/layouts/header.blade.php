@@ -1,5 +1,5 @@
 @php
-    $header_type = config('const.common.BLADE.HEADER')
+    $header_type = config('const.BLADE.HEADER')
 @endphp
 
 @switch($disp_header)

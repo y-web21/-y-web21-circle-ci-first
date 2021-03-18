@@ -7,7 +7,7 @@ $currentPage = request()->path();
 if (strpos('/', $currentPage) !== false) {
     $currentPage = explode('/', $currentPage)[0];
 }
-$gnav_type = config('const.common.BLADE.GNAV');
+$gnav_type = config('const.BLADE.GNAV');
 @endphp
 
 @switch($disp_gnav)

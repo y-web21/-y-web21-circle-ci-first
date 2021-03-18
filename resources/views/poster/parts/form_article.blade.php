@@ -6,7 +6,7 @@ if (isset($image) && $image->count() !== 0) {
 }
 
 $form_value = [];
-$form_value['status_id'] = config('const.common.ARTICLE.DEFAULT_STATUS');
+$form_value['status_id'] = config('const.ARTICLE.DEFAULT_STATUS');
 
 if (isset($article)) {
     $form_value += ['title' => $article->title];

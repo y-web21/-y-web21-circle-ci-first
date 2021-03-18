@@ -8,7 +8,7 @@ use App\Models\Article;
 use App\Models\ArticleStatus;
 use App\Models\UploadImage;
 use App\Library\Helper;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 
@@ -28,25 +28,19 @@ class PosterPagesController extends Controller
     public function index()
     {
         Helper::forgetSessionArticleEdit();
-        list($user_id, $user_name) = Helper::getUser();
 
-        // $abc = Article::find(1)->statusName->name;
-        // var_dump($abc);
-
-        DB::enableQueryLog();
         $articles = DB::table('articles')
             ->leftJoin('article_statuses', 'status', '=', 'article_statuses.status_id')
-            ->where('author', '=', $user_id)
+            ->where('author', '=', Auth::user()->id)
             ->orderBy('articles.updated_at', 'desc')
             ->limit(999)
             ->select('articles.*', 'article_statuses.status_name')
             ->get();
-        // dd(DB::getQueryLog());
 
         $article_statuses = ArticleStatus::all();
         $count = $articles->count();
 
-        return view('poster/my_posts', compact('articles', 'article_statuses', 'user_id', 'user_name'));
+        return view('poster/my_posts', compact('articles', 'article_statuses'));
     }
 
     /**
@@ -56,12 +50,10 @@ class PosterPagesController extends Controller
      */
     public function create(Request $request)
     {
-        list($user_id, $user_name) = Helper::getUser();
-
         $new_article = new Article;
         $new_article->title = $request->title;
         $new_article->content = $request->content;
-        $new_article->author = $user_id;
+        $new_article->author = Auth::user()->id;
         $new_article->status = $request->status_id;
         $new_article->featured_image_id = $request->image_id;
         $new_article->save();
@@ -115,9 +107,6 @@ class PosterPagesController extends Controller
             $image = UploadImage::where('name', '=', $request->image)->first();
         }
 
-        list($user_id, $user_name) = Helper::getUser();
-        $statuses = ArticleStatus::all();
-
         return view('poster/article_edit', [
             'article' => $article,
             'statuses' => ArticleStatus::all(),
@@ -165,9 +154,8 @@ class PosterPagesController extends Controller
 
         $image = UploadImage::where('name', '=', $req_image)->first();
 
-        list($user_id, $user_name) = Helper::getUser();
         $statuses = ArticleStatus::all();
-        return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name', 'image'));
+        return view('poster/article_new_post', compact('statuses', 'image'));
     }
 
     public function continuePost(Request $request)
@@ -176,9 +164,8 @@ class PosterPagesController extends Controller
 
         $image = UploadImage::where('name', '=', $image_name)->first();
 
-        list($user_id, $user_name) = Helper::getUser();
         $statuses = ArticleStatus::all();
-        return view('poster/article_new_post', compact('statuses', 'user_id', 'user_name', 'image'));
+        return view('poster/article_new_post', compact('statuses', 'image'));
     }
 
     public function continueEdit(Request $request, $id)

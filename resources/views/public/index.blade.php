@@ -2,7 +2,7 @@
 @section('title', 'Fictitious company')
 
     @php
-    $disp_header = config('const.common.BLADE.HEADER.LARGE');
+    $disp_header = config('const.BLADE.HEADER.LARGE');
     @endphp
 
 @section('content')

@@ -21,6 +21,9 @@ return [
             'IMAGES' => 9,
         ],
     ],
+    'TEST_USER' => [
+        'ID' => 1,
+    ],
     'BLADE' => [
         'GNAV' => [
             'NONE' => -1,
