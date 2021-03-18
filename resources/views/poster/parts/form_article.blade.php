@@ -36,23 +36,23 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
         <div class="flex flex-col space-y-4 md:space-y-0 md:flex-row md:space-x-4">
 
             <div class="w-full">
-                <label class="text-xl ">タイトル</label>
+                <label class="text-xl">タイトル</label>
                 <input id="new_title" type="text" name="title"
                     value="{{ isset($form_value['title']) ? $form_value['title'] : old('title') }}"
                     placeholder="タイトルを入力してください" class="w-full form-active-blue text-opacity-10">
             </div>
 
             <div class="w-full">
-                <label class="text-xl ">投稿者</label>
-                <input type="author" value="{{ Auth::user()->name }}" class="w-full form-active-blue text-opacity-10"
+                <label class="text-xl">投稿者</label>
+                <input type="text" name="author" value="{{ Auth::user()->name }}" class="w-full form-active-blue text-opacity-10 bg-gray-200"
                     disabled>
             </div>
         </div>
 
         <div class="w-full">
             <label class="text-xl bg-">投稿内容</label>
-            <textarea id="new_content" name="content" cols="30" rows="10" placeholder="内容を入力してください"
-                class="w-full form-active-blue text-opacity-10">{{ isset($form_value['content']) ? $form_value['content'] : old('content') }}</textarea>
+            <textarea id="new_content" name="content" placeholder="内容を入力してください"
+                class="w-full form-active-blue text-opacity-10 minh-300px">{{ isset($form_value['content']) ? $form_value['content'] : old('content') }}</textarea>
         </div>
 
         <div class="w-full">
@@ -89,7 +89,7 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
                 @if (isset($image) && $image->count() !== 0)
                     <label class="text-xl bg-">投稿画像</label>
                     <img src="{{ asset('/storage/images/' . $image->name) }}" alt="{{ $image->description }}"
-                        class="w-full mw-300px mx-auto">
+                        class="w-full maxw-300px mx-auto">
                 @endif
 
             </div>

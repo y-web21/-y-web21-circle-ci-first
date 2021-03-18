@@ -1,37 +1,31 @@
 @extends('layouts.master')
 @php
 $disp_header = config('const.common.BLADE.HEADER.NONE');
-$disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
+$disp_gnav = config('const.common.BLADE.GNAV.NONE');
 @endphp
 
 @section('content')
 
-    @include('poster.parts.layouts')
+    @include('navigation-menu')
 
-    <div class="bg-gray-400 sticky top-0 text-black text-center w-full mb-6 z-40">
-        <form class="p-5 lg:flex items-center" action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
+    <div class="w-full relative mt-0 shadow-2xl rounded bg-white overflow-hidden">
+
+    <!-- upload bar -->
+    <div class="bg-gray-200 top-0 text-black text-center w-full mb-6 z-30">
+        <form class="lg:p-5 sm:flex justify-around items-center" action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
             @csrf
-            <div class="m-4 lg:w-full">
-                <input type="text" name="title"
-                value="{{ old('title') }}"
-                placeholder="画像タイトルを入力してください" class="w-full form-active-blue text-opacity-10 hidden">
-            </div>
-            <div class="m-4 lg:w-full">
-                <input class="cursor-pointer" type="file" name="image" accept="image/png, image/jpeg, image/png, image/gif">
+            <div class="w-full sm:w-1/3 p-4">
+                @error('image')
+                    <p class="text-red-600 m-2">{{ $message }}</p>
+                @enderror
+                <input class="sm:pl-10 m-2 cursor-pointer" type="file" name="image" accept="image/png, image/jpeg, image/png, image/gif">
                 {{-- <input type="file" name="image" accept="image/*"> --}}
             </div>
-            <div class="m-4 lg:w-full">
+            <div class="w-full sm:w-1/3 mt-4 sm:mt-0 pb-6 sm:pb-0">
                 <button type="submit" class="btn-white">アップロード</button>
             </div>
-            <div class="m-4 lg:w-full text-red-600">
-                @error('image')
-                    {{ $message }}
-                @enderror
-            </div>
-
         </form>
     </div>
-
 
     <div class="px-4 py-6">
 
@@ -46,22 +40,15 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
             </p>
         @enderror
 
-
         <!-- image cards -->
         <div>
             <div class="relative items-center justify-center">
 
-                @php
-                    $counter = 0;
-                @endphp
-
+            <div class="sm:flex flex-wrap mx-auto my-auto w-full justify-around items-end mt-8">
                 @foreach ($images as $image)
 
-                    @if ($counter % 3 === 0)
-                        <div class="lg:flex mx-auto my-auto w-full justify-around items-end mt-8">
-                    @endif
-
-                    <div class="lg:m-4 shadow-md hover:shadow-lg hover:bg-gray-100 rounded-lg bg-white my-12 w-full">
+                    <div class="sm:w-1/2 lg:w-1/3 m-0">
+                    <div class="sm:m-4 shadow-md hover:shadow-lg hover:bg-gray-100 rounded-lg bg-white my-12">
                         <!-- Card Image -->
                         <a href="{{ route('image.show', $image->id) }}">
                             <img src="{{ asset('/storage/images/' . $image->name) }}" alt="{{ $image->description }}"
@@ -69,7 +56,6 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
 
                         <!-- Card Content -->
                         <div class="p-4 w-full">
-                            {{-- <h3 class="font-medium text-gray-600 text-lg my-2 uppercase">{{ $image->description }}</h3> --}}
                             <p class="text-justify">{{ $image->updated_at }}</p>
                             <div class="mt-3">
                                 @if (Session::has('editing_status'))
@@ -80,9 +66,6 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
                                         <button type="submit" class="btn-yellow">選択</button>
                                     </form>
                                 </div>
-
-                                @else
-
                                 @endif
                                 <form action={{ route('image.del-req') }} method="post" style="display:inline-block;">
                                     @csrf
@@ -92,28 +75,15 @@ $disp_gnav = config('const.common.BLADE.GNAV.DISABLE');
                             </div>
                         </div>
                     </div>
-
-                    @if ($counter % 3 === 2)
-                        </div>
-                    @endif
-
-                    @php
-                        $counter++;
-                    @endphp
-                @endforeach
-
-                @if ($counter % 3 !== 2)
-                    @for ($i = 0; $i <= $counter % 3; $i++)
-                        <div class="lg:m-4 my-12 w-full"></div>
-                    @endfor
                     </div>
-                @endif
+                @endforeach
+            </div>
             </div>
         </div>
     </div>
 
     {{ $images->links('layouts.paginator.default') }}
 
-    @include('poster.parts.layouts_close')
+    </div>
 
 @endsection

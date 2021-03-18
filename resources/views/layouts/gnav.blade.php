@@ -2,6 +2,7 @@
 $navList = [['HOME', '/'], ['RANKING', '/ranking'], ['ABOUT', '/about'], ['COVID-19', '/contact']];
 $navLogin = [['ユーザー登録', '/register'], ['ログイン', '/login']];
 $navLogined = [['投稿ページ', route('post.index')], [__('Profile'), route('profile.show')]];
+
 $currentPage = request()->path();
 if (strpos('/', $currentPage) !== false) {
     $currentPage = explode('/', $currentPage)[0];
@@ -10,7 +11,7 @@ $gnav_type = config('const.common.BLADE.GNAV');
 @endphp
 
 @switch($disp_gnav)
-    @case($gnav_type['ENABLE'])
+    @case($gnav_type['PUBLIC'])
     {{-- normal --}}
     <nav class="bg-gray-200 sticky top-0 text-black text-center">
         <div class="flex w-full">
@@ -34,8 +35,8 @@ $gnav_type = config('const.common.BLADE.GNAV');
             <div class="dropdown inline-block relative lg:mr-10">
                 <p class="p-2 px-2 whitespace-nowrap minw-100px">
                     {{ Auth::check() ? Auth::user()->name : '投稿者用' }}</p>
-                <div class="dropdown-content absolute hidden pos-left-n150pe w-100px">
-                    <ul class="px-2 pt-2 bg-white rounded-md border-gray-400 border">
+                <div class="dropdown-content absolute hidden w-100px">
+                    <ul class="px-2 pt-2 bg-white rounded-md border-gray-400 border text-sm">
                         @if (!Auth::check())
                             @foreach ($navLogin as $page)
                                 <li><a class="mb-2 pt-1 mx-auto block whitespace-no-wrap nav-focus"

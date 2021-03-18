@@ -4,18 +4,18 @@
         <ul class="flex text-gray-700">
             {{-- To First Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
+                <li class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-chevron-left w-4 h-4">
+                        class="feather feather-chevron-left w-5 h-5">
                     </svg>
                 </li>
             @else
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
+                <li class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->url(1) }}" rel="prev" aria-label="@lang('pagination.first')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-chevron-left w-4 h-4">
+                            stroke-linejoin="round" class="feather feather-chevron-left w-5 h-5">
                             <polyline points="10 18 4 12 10 6"></polyline>
                             <polyline points="20 18 14 12 20 6"></polyline>
                         </svg>
@@ -26,21 +26,21 @@
 
             {{-- Previous Page Link --}}
             @if ($paginator->onFirstPage())
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none"
+                <li class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none"
                     aria-disabled="true" aria-label="@lang('pagination.previous')">
                     <span aria-hidden="true"></span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-chevron-left w-4 h-4">
+                        class="feather feather-chevron-left w-5 h-5">
                     </svg>
                 </li>
             @else
-                <li class="h-8 w-8 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
+                <li class="h-12 w-12 mr-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
                         aria-label="@lang('pagination.previous')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-chevron-left w-4 h-4">
+                            stroke-linejoin="round" class="feather feather-chevron-left w-5 h-5">
                             <polyline points="15 18 9 12 15 6"></polyline>
                         </svg>
                     </a>
@@ -48,11 +48,11 @@
             @endif
 
             {{-- Pagination Elements --}}
-            <div class="flex h-8 font-medium rounded-full bg-gray-200">
+            <div class="flex h-12 font-medium rounded-full bg-gray-200">
                 @foreach ($elements as $element)
                     {{-- "Three Dots" Separator --}}
                     @if (is_string($element))
-                        <li class="w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in rounded-full"
+                        <li class="w-12 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in rounded-full"
                             aria-disabled="true">
                             <span>{{ $element }}</span>
                         </li>
@@ -62,12 +62,12 @@
                     @if (is_array($element))
                         @foreach ($element as $page => $url)
                             @if ($page == $paginator->currentPage())
-                                <li class="w-8 md:flex justify-center items-center hidden leading-5 transition duration-150 ease-in  rounded-full bg-pink-600 text-white pointer-events-none"
+                                <li class="w-12 flex justify-center items-center leading-5 transition duration-150 ease-in rounded-full bg-pink-600 text-white pointer-events-none"
                                     aria-current="page"><span>{{ $page }}</span></li>
                             @else
                             <div class="focus:border-indigo-500"></div>
                                 <li
-                                    class="w-8 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full hover:text-pink-600">
+                                    class="w-12 md:flex justify-center items-center hidden cursor-pointer leading-5 transition duration-150 ease-in rounded-full hover:text-pink-600">
                                     <a href="{{ $url }}">{{ $page }}</a>
                                 </li>
                             @endif
@@ -78,42 +78,42 @@
 
             {{-- Next Page Link --}}
             @if ($paginator->hasMorePages())
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
+                <li class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->nextPageUrl() }}" rel="next" aria-label="@lang('pagination.next')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-chevron-right w-4 h-4">
+                            stroke-linejoin="round" class="feather feather-chevron-right w-5 h-5">
                             <polyline points="9 18 15 12 9 6"></polyline>
                         </svg>
                     </a>
                 </li>
             @else
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
+                <li class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-chevron-right w-4 h-4">
+                        class="feather feather-chevron-right w-5 h-5">
                     </svg>
                 </li>
             @endif
 
             {{-- To Last Page Link --}}
             @if ($paginator->hasMorePages())
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
+                <li class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 cursor-pointer hover:text-pink-600">
                     <a href="{{ $paginator->url($paginator->lastPage()) }}" rel="next"
                         aria-label="@lang('pagination.last')">
                         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none"
                             viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                            stroke-linejoin="round" class="feather feather-chevron-right w-4 h-4">
+                            stroke-linejoin="round" class="feather feather-chevron-right w-5 h-5">
                             <polyline points="5 18 11 12 5 6"></polyline>
                             <polyline points="15 18 21 12 15 6"></polyline>
                         </svg>
                     </a>
                 </li>
             @else
-                <li class="h-8 w-8 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
+                <li class="h-12 w-12 ml-1 flex justify-center items-center rounded-full bg-gray-200 pointer-events-none">
                     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                        class="feather feather-chevron-right w-4 h-4">
+                        class="feather feather-chevron-right w-5 h-5">
                     </svg>
                 </li>
             @endif

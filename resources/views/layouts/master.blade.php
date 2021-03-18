@@ -16,7 +16,7 @@ if (!isset($disp_header)) {
     $disp_header = config('const.common.BLADE.HEADER.SMALL');
 }
 if (!isset($disp_gnav)) {
-    $disp_gnav = config('const.common.BLADE.GNAV.ENABLE');
+    $disp_gnav = config('const.common.BLADE.GNAV.PUBLIC');
 }
 if (!isset($disp_footer)) {
     $disp_footer = config('const.common.BLADE.FOOTER.ENABLE');
@@ -41,7 +41,7 @@ if (!isset($disp_footer)) {
             @include('layouts.gnav', [ $disp_gnav ])
         @show
 
-        <div class="md:container mx-auto">
+        <div class="container mx-auto">
 
             <main>
                 <div class="container">

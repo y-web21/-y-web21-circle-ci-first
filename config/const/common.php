@@ -18,18 +18,18 @@ return [
     ],
     'PAGINATION' => [
         'PER_PAGE' => [
-            'IMAGES' => 10,
+            'IMAGES' => 9,
         ],
     ],
     'BLADE' => [
         'GNAV' => [
-            'DISABLE' => 0,
-            'ENABLE' => 1,
+            'NONE' => -1,
+            'PUBLIC' => 0,
         ],
         'HEADER' => [
             'NONE' => -1,
-            'SMALL' => 1,
-            'LARGE' => 2,
+            'SMALL' => 0,
+            'LARGE' => 1,
         ],
         'FOOTER' => [
             'DISABLE' => 0,

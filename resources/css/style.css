@@ -11,20 +11,23 @@
 .h-200px {
     height: 200px;
 }
-.mh-300px {
+.maxh-300px {
     max-height: 300px;
 }
-.mh-400px {
+.maxh-400px {
     max-height: 400px;
 }
-.mh-500px {
+.maxh-500px {
     max-height: 500px;
 }
-.mw-300px{
+.maxw-300px{
     max-width: 300px;
 }
 .minw-100px{
     min-width: 100px;
+}
+.minh-300px{
+    min-height: 300px;
 }
 .h-100per{
     height: 100%;

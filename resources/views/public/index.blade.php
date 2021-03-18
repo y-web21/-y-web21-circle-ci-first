@@ -20,11 +20,11 @@
                             <div class="flex flex-wrap md:flex-nowrap justify-center">
                                 @if ($top_news->uploadImage === null)
                                     <img alt="no_image"
-                                        class="rounded-md border-2 border-gray-300 object-cover sm:w-1/2 xl:w-3/7 mh-400px my-4 bg-white"
+                                        class="rounded-md border-2 border-gray-300 object-cover sm:w-1/2 xl:w-3/7 maxh-400px my-4 bg-white"
                                         src=" {{ asset('storage/images/no_image.png') }}">
                                 @else
                                     <img alt="{{ $top_news->uploadImage->description }}"
-                                        class="rounded-md border-2 border-gray-300 object-cover sm:w-1/2 xl:w-3/7 mh-400px my-4"
+                                        class="rounded-md border-2 border-gray-300 object-cover sm:w-1/2 xl:w-3/7 maxh-400px my-4"
                                         src="{{ asset('storage/images/' . $top_news->uploadImage->name) }}">
                                 @endif
                                 <div class="flex flex-col my-4 ml-5 mr-2 w-full">

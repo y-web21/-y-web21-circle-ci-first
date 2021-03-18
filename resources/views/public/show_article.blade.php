@@ -7,7 +7,7 @@
         class="bg-white border-2 border-gray-300 rounded-xl tracking-wide shadow-lg w-full overflow-hidden my-10 w-full max-w-screen-lg lg:mx-auto">
         <header>
             @if ($article->uploadImage !== null)
-                <img alt="{{ $article->uploadImage->description }}" class="object-cover m-0 w-full h-auto mh-500px"
+                <img alt="{{ $article->uploadImage->description }}" class="object-cover m-0 w-full h-auto maxh-500px"
                     style="border-radius: 0.375rem 0.375rem 0 0"
                     src="{{ asset('storage/images/' . $article->uploadImage->name) }}">
             @endif
