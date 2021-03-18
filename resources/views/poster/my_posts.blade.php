@@ -24,7 +24,7 @@ $disp_gnav = config('const.common.BLADE.GNAV.NONE');
                     <th class="border-r border-blue-200 bg-blue-900 x-4 py-2 w-1/15">状態</th>
                     <th class="border-r border-blue-200 bg-blue-900 x-4 py-2 w-2/15">更新日</th>
                     <th class="border-r border-blue-200 bg-blue-900 x-4 py-2 w-2/15">作成日</th>
-                    <th class="bg-blue-900 x-4 py-2 w-2/15">操作</th>
+                    <th class="border-r border-blue-800 bg-blue-900 x-4 py-2 w-2/15">操作</th>
                 </tr>
             </thead>
             <tbody>
