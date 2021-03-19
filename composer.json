@@ -66,6 +66,14 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
-        ]
+        ],
+        "test": "phpunit",
+        "test-cls": "phpunit -v",
+        "test-func": "phpunit -v --filter"
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests!",
+        "test-cls": "arg1 classPath",
+        "test-func": "arg1 funcName, arg2 classPath"
     }
 }
