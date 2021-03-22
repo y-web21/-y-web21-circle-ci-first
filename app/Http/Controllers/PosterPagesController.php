@@ -51,15 +51,14 @@ class PosterPagesController extends Controller
      */
     public function create(Request $request)
     {
-        $new_article = new Article;
-        $new_article->title = $request->title;
-        $new_article->content = $request->content;
-        $new_article->author = Auth::user()->id;
-        $new_article->status = $request->status_id;
-        $new_article->featured_image_id = $request->image_id;
-        $new_article->save();
+        Helper::forgetSessionArticleEdit();
 
-        return redirect('/post');
+        empty(request('image')) ? $req_image = '' : $req_image = request('image');
+
+        $image = UploadImage::where('name', '=', $req_image)->first();
+
+        $statuses = ArticleStatus::all();
+        return view('poster/article_new_post', compact('statuses', 'image'));
     }
 
     /**
@@ -70,7 +69,15 @@ class PosterPagesController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump($request);
+        $new_article = new Article;
+        $new_article->title = $request->title;
+        $new_article->content = $request->content;
+        $new_article->author = Auth::user()->id;
+        $new_article->status = $request->status_id;
+        $new_article->featured_image_id = $request->image_id;
+        $new_article->save();
+
+        return redirect('/post');
     }
 
     /**
@@ -144,19 +151,6 @@ class PosterPagesController extends Controller
         $article = Article::findOrFail($id);
         $article->delete();
         return redirect('post/');
-    }
-
-
-    public function newPost(Request $request)
-    {
-        Helper::forgetSessionArticleEdit();
-
-        empty(request('image')) ? $req_image = '' : $req_image = request('image');
-
-        $image = UploadImage::where('name', '=', $req_image)->first();
-
-        $statuses = ArticleStatus::all();
-        return view('poster/article_new_post', compact('statuses', 'image'));
     }
 
     public function continuePost(Request $request)

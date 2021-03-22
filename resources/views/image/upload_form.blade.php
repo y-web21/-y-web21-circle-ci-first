@@ -12,7 +12,7 @@ $disp_gnav = config('const.BLADE.GNAV.NONE');
 
     <!-- upload bar -->
     <div class="bg-gray-200 top-0 text-black text-center w-full mb-6 z-30">
-        <form class="lg:p-5 sm:flex justify-around items-center" action="{{ route('image.upload') }}" method="post" enctype="multipart/form-data">
+        <form class="lg:p-5 sm:flex justify-around items-center" action="{{ route('images.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="w-full sm:w-1/3 p-4">
                 @error('image')
@@ -50,7 +50,7 @@ $disp_gnav = config('const.BLADE.GNAV.NONE');
                     <div class="sm:w-1/2 lg:w-1/3 m-0">
                     <div class="sm:m-4 shadow-md hover:shadow-lg hover:bg-gray-100 rounded-lg bg-white my-12">
                         <!-- Card Image -->
-                        <a href="{{ route('image.show', $image->id) }}">
+                        <a href="{{ route('images.show', $image->id) }}">
                             <img src="{{ asset('/storage/images/' . $image->name) }}" alt="{{ $image->description }}"
                                 class=" w-full object-contain"></a>
 

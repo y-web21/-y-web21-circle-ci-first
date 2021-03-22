@@ -72,8 +72,8 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
                             formaction="{{ route('post.update', ['post' => $article->id]) }}"
                             class="btn-green">更新</button>
                     @else
-                        <button id="btn_submit_new_post" type="submit" formmethod="get"
-                            formaction="{{ route('post.create') }}" class="btn-blue">投稿</button>
+                        <button id="btn_submit_new_post" type="submit" formmethod="post"
+                            formaction="{{ route('post.store') }}" class="btn-blue">投稿</button>
                     @endif
                 </div>
 

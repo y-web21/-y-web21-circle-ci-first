@@ -1,5 +1,5 @@
 @php
-$navList = [['HOME', '/'], ['RANKING', '/ranking'], ['ABOUT', '/about'], ['COVID-19', '/contact']];
+$navList = [['HOME', '/'], ['RANKING', '/ranking'], ['ABOUT', '/about'], ['COVID-19', '/covid-19']];
 $navLogin = [['ユーザー登録', '/register'], ['ログイン', '/login']];
 $navLogined = [['投稿ページ', route('post.index')], [__('Profile'), route('profile.show')]];
 
