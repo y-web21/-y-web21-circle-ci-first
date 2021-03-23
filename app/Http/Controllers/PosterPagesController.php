@@ -49,16 +49,11 @@ class PosterPagesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
         Helper::forgetSessionArticleEdit();
-
-        empty(request('image')) ? $req_image = '' : $req_image = request('image');
-
-        $image = UploadImage::where('name', '=', $req_image)->first();
-
         $statuses = ArticleStatus::all();
-        return view('poster/article_new_post', compact('statuses', 'image'));
+        return view('poster/article_new_post', compact('statuses'));
     }
 
     /**

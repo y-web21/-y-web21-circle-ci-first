@@ -87,7 +87,7 @@ Session::has('editing_status') && ($form_value = Helper::arrayAppendOrOverwrite(
 
             <div class="w-full">
                 @if (isset($image) && $image->count() !== 0)
-                    <label class="text-xl bg-">投稿画像</label>
+                    <label class="text-xl">投稿画像</label>
                     <img src="{{ asset('/storage/images/' . $image->name) }}" alt="{{ $image->description }}"
                         class="w-full maxw-300px mx-auto">
                 @endif
