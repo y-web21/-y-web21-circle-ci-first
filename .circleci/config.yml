@@ -105,10 +105,6 @@ jobs:
           paths:
             - ./vendor
 
-      # prepare the database
-      # - run: touch storage/testing.sqlite
-      # - run: php artisan migrate --env=testing --database=sqlite_testing --force
-
       - run:
           name: "artisan db"
           command: |
