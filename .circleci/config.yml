@@ -29,7 +29,7 @@ jobs:
       - MYSQL_ALLOW_EMPTY_PASSWORD: true
 
     # 複数のプロジェクトで利用することを考慮して明示する
-    working_directory: ~/Lara8_media
+    working_directory: ~/-y-web21-circle-ci-first
 
     steps:
       - checkout # git cloneっぽい
