@@ -113,7 +113,7 @@ jobs:
           name: "artisan db"
           command: |
             php artisan migrate
-            php artisan db:seed
+      # php artisan db:seed
 
       - run:
           name: "Run PHPUnit"

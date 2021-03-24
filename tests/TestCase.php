@@ -13,7 +13,7 @@ abstract class TestCase extends BaseTestCase
     {
         parent::setUp();
         // echo(config('app.env'));
-
+        echo('huhihi');
         Artisan::call('cache:clear');
         Artisan::call('config:clear');
         Artisan::call('optimize:clear');
