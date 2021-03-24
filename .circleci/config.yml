@@ -38,6 +38,8 @@ jobs:
       - run: sudo docker-php-ext-install zip
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
+      # Install npm
+      - run: sudo docker-php-ext-install npm
 
       # composer インストールとキャッシュ
       # Download and cache dependencies
