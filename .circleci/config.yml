@@ -38,17 +38,6 @@ jobs:
       - run: sudo docker-php-ext-install zip
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
-      # Install npm
-      # - run: sudo docker-php-ext-install npm
-
-      # composer インストールとキャッシュ
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            # "composer.lock" can be used if it is committed to the repo
-            - v1-dependencies-{{ checksum "composer.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
 
       - run:
           name: "Node.js と npm の更新"
@@ -59,6 +48,16 @@ jobs:
           name: 現行バージョンのノードのチェック
           command: node -v
 
+
+      # composer インストールとキャッシュ
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            # "composer.lock" can be used if it is committed to the repo
+            - v1-dependencies-{{ checksum "composer.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
       # -n メッセージ無効 --prefer-dist 圧縮ファイルダウンロード
       - run: composer install -n --prefer-dist
 
@@ -68,27 +67,27 @@ jobs:
           paths:
             - ./vendor
 
-      # yarn
-      - restore_cache:
-          keys:
-            - node-v1-{{ checksum "package.json" }}
-            - node-v1-
-      - run: yarn install
-      - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
-          paths:
-            - node_modules
+      # yarn i と キャッシュ
+      # - restore_cache:
+      #     keys:
+      #       - node-v1-{{ checksum "package.json" }}
+      #       - node-v1-
+      # - run: yarn install
+      # - save_cache:
+      #     key: node-v1-{{ checksum "package.json" }}
+      #     paths:
+      #       - node_modules
 
-      # npm のインストールとキャッシュ
-      #- restore_cache:
-      #    keys:
-      #      - v1-node-{{ checksum "package.json" }}
-      #      - v1-node-
-      #- run: npm install
-      #- save_cache:
-      #    key: v1-node-{{ checksum "package.json" }}
-      #    paths:
-      #      - ./node_modules
+      # npm i と キャッシュ
+      - restore_cache:
+         keys:
+           - v1-node-{{ checksum "package.json" }}
+           - v1-node-
+      - run: npm install
+      - save_cache:
+         key: v1-node-{{ checksum "package.json" }}
+         paths:
+           - ./node_modules
 
       # prepare the database
       # - run: touch storage/testing.sqlite
