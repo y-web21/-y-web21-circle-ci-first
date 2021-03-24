@@ -11,7 +11,8 @@ jobs:
         environment:
           - APP_DEBUG: true
           # .env.circle_testingを使用
-          - APP_ENV: circle_testing
+          - APP_ENV: testing
+          # - APP_ENV: circle_testing
           # config/database.php $connections['circle_testing']を使用
           - DB_CONNECTION: mysql_circle_testing
 
@@ -115,4 +116,5 @@ jobs:
 
       - run:
           name: "Run PHPUnit"
-          command: vendor/bin/phpunit -v tests/Feature/PosterPagesControllerTest.php --filter test_destroy
+          command: vendor/bin/phpunit
+          # command: vendor/bin/phpunit -v tests/Feature/PosterPagesControllerTest.php --filter test_destroy
