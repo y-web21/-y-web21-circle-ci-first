@@ -134,9 +134,9 @@ class PosterPagesControllerTest extends TestCase
 
     public function test_destroy()
     {
-        $this->withoutMiddleware();
+        // $this->withoutMiddleware();
         $record = Article::factory()->create();
-        $response = $this->delete(route('post.destroy', ['post' => $record->id]));
+        $response = $this->from(route('post.index'))->delete(route('post.destroy', ['post' => $record->id]));
         echo($this->poster_home);
         $response->assertRedirect($this->poster_home);
         $this->assertDeleted($record);
