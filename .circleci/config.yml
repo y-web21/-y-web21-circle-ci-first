@@ -7,7 +7,8 @@ jobs:
   build:
     docker:
       # Specify the version you desire here
-      - image: circleci/php:7.1-node-browsers
+      - image: circleci/php:7.4.16-fpm-buster
+      - image: circleci/mysql:5.7.33
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -18,12 +19,27 @@ jobs:
       #
       # - image: redis:2.8.19
 
+    environment:
+      - APP_DEBUG: true
+      # .env.testingを使用
+      - APP_ENV: testing
+      - APP_KEY: base64:hvoPr0CX0tbk04SuMyZ1cRZNpwQUzCAtD9fcev1tiyA= #不要かも
+      # config/database.php $connections['circle_testing']を使用
+      - DB_CONNECTION: circle_test
+      - MYSQL_ALLOW_EMPTY_PASSWORD: true
+
+    # 複数のプロジェクトで利用することを考慮して明示する
+    working_directory: ~/Lara8_media
+
     steps:
-      - checkout
+      - checkout # git cloneっぽい
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
+      # Install PHP Extension
+      - run: sudo docker-php-ext-install pdo_mysql
 
+      # composer インストールとキャッシュ
       # Download and cache dependencies
       - restore_cache:
           keys:
@@ -32,27 +48,51 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
 
+      # -n メッセージ無効 --prefer-dist 圧縮ファイルダウンロード
       - run: composer install -n --prefer-dist
 
+      # キャッシュを生成
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
             - ./vendor
+
+      # yarn
+      # - restore_cache:
+      #     keys:
+      #       - node-v1-{{ checksum "package.json" }}
+      #       - node-v1-
+      # - run: yarn install
+      # - save_cache:
+      #     key: node-v1-{{ checksum "package.json" }}
+      #     paths:
+      #       - node_modules
+
+      # npm のインストールとキャッシュ
       - restore_cache:
           keys:
-            - node-v1-{{ checksum "package.json" }}
-            - node-v1-
-      - run: yarn install
+            - v1-node-{{ checksum "package.json" }}
+            - v1-node-
+      - run: npm install
       - save_cache:
-          key: node-v1-{{ checksum "package.json" }}
+          paths:
+            - ./node_modules
+          key: v1-node-{{ checksum "package.json" }}
           paths:
             - node_modules
 
       # prepare the database
-      - run: touch storage/testing.sqlite
-      - run: php artisan migrate --env=testing --database=sqlite_testing --force
+      # - run: touch storage/testing.sqlite
+      # - run: php artisan migrate --env=testing --database=sqlite_testing --force
+
+
+      # run seeding
+      - run: php artisan migrate
+      - run: php artisan db:seed
 
       # run tests with phpunit or codecept
-      #- run: ./vendor/bin/phpunit
-      - run: ./vendor/bin/codecept build
-      - run: ./vendor/bin/codecept run
+      - run: ./vendor/bin/phpunit
+          name: Run PHPUnit
+          command: vendor/bin/phpunit
+      # - run: ./vendor/bin/codecept build
+      # - run: ./vendor/bin/codecept run
