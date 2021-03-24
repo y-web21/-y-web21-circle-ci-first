@@ -37,11 +37,11 @@ jobs:
       - checkout
 
       - run:
-        name: hiroshi
-        command: |
-          echo $TEST_MSG
-          echo $APP_ENV
-          echo $DB_HOST
+          name: hiroshi
+          command: |
+            echo $TEST_MSG
+            echo $APP_ENV
+            echo $DB_HOST
 
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
