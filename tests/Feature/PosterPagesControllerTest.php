@@ -135,7 +135,9 @@ class PosterPagesControllerTest extends TestCase
     {
         $record = Article::factory()->create();
         $response = $this->delete(route('post.destroy', ['post' => $record->id]));
-        $response->assertRedirect($this->poster_home);
+        // $response->assertRedirect($this->poster_home);
         $this->assertDeleted($record);
+        //         ->from('posts') //追加
+        // ->post('post/create', [
     }
 }
