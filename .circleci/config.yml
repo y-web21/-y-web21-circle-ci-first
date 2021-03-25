@@ -10,7 +10,7 @@ jobs:
       - image: circleci/php:7.4.16-fpm-buster
         environment:
           - APP_DEBUG: true
-          # .env.circle_testingを使用
+          # .env.testingを使用
           - APP_ENV: testing
           # config/database.php $connections['circle_testing']を使用
           - DB_CONNECTION: mysql_circle_testing
@@ -27,9 +27,9 @@ jobs:
       - image: circleci/mysql:5.7.33
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          # - MYSQL_DATABASE: circle_test
 
     environment:
-      - MYSQL_DATABASE: circle_test
       - COMMON_ENV: test_value
 
     # 複数のプロジェクトで利用することを考慮して明示する
@@ -84,8 +84,7 @@ jobs:
       #     paths:
       #       - node_modules
 
-      # composer インストールとキャッシュ
-      # Download and cache dependencies
+      # composer Download and cache dependencies
       - restore_cache:
           keys:
             # "composer.lock" can be used if it is committed to the repo
@@ -109,7 +108,7 @@ jobs:
       - run:
           name: "artisan db"
           command: |
-            php artisan migrate --env circle_testing
+            php artisan migrate --env testing
           # php artisan migrate --env circle_testing --database=mysql_circle_testing
       # php artisan db:seed
 
