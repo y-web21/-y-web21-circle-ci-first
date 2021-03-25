@@ -17,6 +17,8 @@ jobs:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: circle_test
 
+      - image: circleci/node:12
+
     working_directory: ~/application
 
     steps:
@@ -50,10 +52,13 @@ jobs:
 
       # yarn
       - run:
-          name: yarn
-          command: |
-            curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
-            curl -o- -L https://yarnpkg.com/install.sh | bash
+          name: install dependencies
+          command: yarn install
+      # - run:
+      #     name: yarn
+      #     command: |
+      #       curl -sSL "https://nodejs.org/dist/v11.10.0/node-v11.10.0-linux-x64.tar.xz" | sudo tar --strip-components=2 -xJ -C /usr/local/bin/ node-v11.10.0-linux-x64/bin/node
+      #       curl -o- -L https://yarnpkg.com/install.sh | bash
       - restore_cache:
           keys:
             - node-v1-{{ checksum "package.json" }}
