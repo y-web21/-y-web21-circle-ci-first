@@ -23,10 +23,10 @@ class PublicPagesController extends Controller
         $top_news = Article::Publish()->orderBy('created_at', 'desc')->first();
         $ranking = ViewLog::getRankingData();
 
-        // $covid19 = new Covid19JpApi;
-        // $pref_data = $covid19->setPrefecture('Aichi')->queryPrefectures()->getArray();
-        // $covid19_api = $covid19->getApiInfo();
-        // unset($covid19);
+        $covid19 = new Covid19JpApi;
+        $pref_data = $covid19->setPrefecture('Aichi')->queryPrefectures()->getArray();
+        $covid19_api = $covid19->getApiInfo();
+        unset($covid19);
 
         return view('public/index', compact('articles', 'top_news', 'ranking'));//, 'pref_data', 'covid19_api'));
     }
