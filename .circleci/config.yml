@@ -36,18 +36,10 @@ jobs:
     working_directory: ~/application
 
     steps:
-      # ソース コードを作業ディレクトリにチェックアウトします
       - checkout
 
-      - run:
-          name: hiroshi
-          command: |
-            echo COMMON_ENV=$COMMON_ENV
-            echo APP_ENV=$APP_ENV
-            echo DB_HOST=$DB_HOST
-
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
-      - run: sudo docker-php-ext-install zip
+      # - run: sudo docker-php-ext-install zip
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
 
@@ -91,11 +83,7 @@ jobs:
             - v1-dependencies-{{ checksum "composer.json" }}
             # fallback to using the latest cache if no exact match is found
             - v1-dependencies-
-
-      # -n メッセージ無効 --prefer-dist 圧縮ファイルダウンロード
       - run: composer install -n --prefer-dist
-
-      # キャッシュを生成
       - save_cache:
           key: v1-dependencies-{{ checksum "composer.json" }}
           paths:
