@@ -27,7 +27,7 @@ jobs:
       # Install PHP Extension
       - run: sudo docker-php-ext-install pdo_mysql
 
-      npm
+      # npm
       - run:
           name: "Node.js と npm の更新"
           command: |
