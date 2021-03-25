@@ -6,7 +6,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.4.16-fpm-buster
+      - image: circleci/php:7.4.16-fpm-buster # Debian GNU/Linux 10 (buster)
         environment:
           - APP_DEBUG: true
           - APP_ENV: testing
@@ -16,8 +16,6 @@ jobs:
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
           - MYSQL_DATABASE: circle_test
-
-      - image: circleci/node:latest
 
     working_directory: ~/application
 
@@ -50,16 +48,24 @@ jobs:
       #     paths:
       #       - ./node_modules
 
-      # yarn
-      - restore_cache:
-          key: yarn-cache-{{ checksum "package.json" }}
+
+
+      yarn
       - run:
-          name: install yarn
-          command: yarn install
+          name: yarn
+          command: |
+            sudo apt-key adv --fetch-keys http://dl.yarnpkg.com/debian/pubkey.gpg
+            echo "deb http://nightly.yarnpkg.com/debian/ nightly main" | sudo tee /etc/apt/sources.list.d/yarn-nightly.list
+            sudo apt update && sudo apt install yarn
+      - restore_cache:
+          keys:
+            - node-v1-{{ checksum "package.json" }}
+            - node-v1-
+      - run: yarn install
       - save_cache:
-          key: yarn-cache-{{ checksum "package.json" }}
+          key: node-v1-{{ checksum "package.json" }}
           paths:
-              - node_modules
+            - node_modules
 
       # composer Download and cache dependencies
       - restore_cache:
