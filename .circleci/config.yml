@@ -27,9 +27,9 @@ jobs:
       - image: circleci/mysql:5.7.33
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: true
-          - MYSQL_DATABASE: circle_test
 
     environment:
+      - MYSQL_DATABASE: circle_test
       - COMMON_ENV: test_value
 
     # 複数のプロジェクトで利用することを考慮して明示する
