@@ -14,10 +14,16 @@ class ExampleTest extends TestCase
      */
     public function testBasicTest()
     {
+        $dir = __DIR__ . '/../imo';
+        $path = $dir . 'ttt.txt';
         $this->withoutExceptionHandling();
+        echo($dir);
+        echo($path);
+        mkdir($dir, 0644, true);
+        // file_put_contents($path ,$text, LOCK_EX | FILE_APPEND);
+        // file_get_contents($path);
+        // $response = $this->get('/');
 
-        $response = $this->get('/');
-
-        $response->assertStatus(200);
+        // $response->assertStatus(200);
     }
 }
