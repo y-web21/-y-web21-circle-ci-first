@@ -84,6 +84,7 @@ jobs:
       #     command: |
       #       php artisan migrate
 
+      - run: rm -rf ./tests/imo/
       - run:
           name: "Run PHPUnit"
           command: |
@@ -96,5 +97,5 @@ jobs:
 
       - run:
           name: "view test logg"
-          command: echo tests/imo/ttt.txt
+          command: cat tests/imo/ttt.txt
           when: always
