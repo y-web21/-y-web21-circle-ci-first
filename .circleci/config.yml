@@ -22,24 +22,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          command: echo "Hello ${CIRCLE_USERNAME}"
-      - run:
-          command: |-
-            echo "TRIGGERER: ${CIRCLE_USERNAME}"
-            echo "BUILD_NUMBER: ${CIRCLE_BUILD_NUM}"
-            echo "BUILD_URL: ${CIRCLE_BUILD_URL}"
-            echo "BRANCH: ${CIRCLE_BRANCH}"
-            echo "RUNNING JOB: ${CIRCLE_JOB}"
-            echo "JOB PARALLELISM: ${CIRCLE_NODE_TOTAL}"
-            echo "CIRCLE_REPOSITORY_URL: ${CIRCLE_REPOSITORY_URL}"
-          name: 一部の CircleCI ランタイム環境変数の表示
-      - run:
-          command: |-
-            echo "uname:" $(uname -a)
-            echo "arch: " $(arch)
-          name: システム情報の表示
-
       - run: sudo apt update # PHP CircleCI 2.0 Configuration File# PHP CircleCI 2.0 Configuration File sudo apt install zlib1g-dev libsqlite3-dev
       - run: sudo docker-php-ext-install zip
       # Install PHP Extension
@@ -84,25 +66,7 @@ jobs:
           command: |
             php artisan migrate
 
-      - run: chmod 777 ./storage/
-      - run: chmod 777 ./storage/logs
-      # - run: chmod 777 ./storage/logs/laravel.log
-
       - run:
           name: "Run PHPUnit"
           command: |
             vendor/bin/phpunit
-
-      # - run:
-      #     name: "view test log"
-      #     command: tail -n 100 ./storage/logs/laravel.log
-      #     when: always
-
-      # - run:
-      #     name: "view test logg"
-      #     command: cat tests/imo/ttt.txt
-      #     when: always
-
-      - run: ls -al ./storage/
-      - run: ls -al ./storage/logs/
-      - run: cat ./storage/logs/laravel.log
