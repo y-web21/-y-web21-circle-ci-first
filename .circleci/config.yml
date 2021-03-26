@@ -12,10 +12,10 @@ jobs:
           - APP_ENV: testing
           - DB_CONNECTION: mysql_circle_testing
 
-      # - image: circleci/mysql:5.7.33
-      #   environment:
-      #     - MYSQL_ALLOW_EMPTY_PASSWORD: true
-      #     - MYSQL_DATABASE: circle_test
+      - image: circleci/mysql:5.7.33
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: true
+          - MYSQL_DATABASE: circle_test
 
     working_directory: ~/application
 
@@ -79,10 +79,10 @@ jobs:
           paths:
             - ./vendor
 
-      # - run:
-      #     name: "artisan db"
-      #     command: |
-      #       php artisan migrate
+      - run:
+          name: "artisan db"
+          command: |
+            php artisan migrate
 
       - run: rm -rf ./tests/imo/
       - run:
