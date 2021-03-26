@@ -19,7 +19,7 @@ class ExampleTest extends TestCase
         $this->withoutExceptionHandling();
         var_dump($dir);
         var_dump($path);
-        mkdir($dir, 0644, true);
+        mkdir($dir, 0777, true);
         file_put_contents($path ,'content', LOCK_EX | FILE_APPEND);
         // file_get_contents($path);
         // $response = $this->get('/');
